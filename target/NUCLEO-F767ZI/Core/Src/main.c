@@ -54,7 +54,11 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+__weak void init_complete_handler(void) {
+  /** NOTE: This function Should not be modified, when the callback is needed,
+       the init_complete_handler could be implemented in the user file
+  */
+}
 /* USER CODE END 0 */
 
 /**
@@ -97,6 +101,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    init_complete_handler();
   }
   /* USER CODE END 3 */
 }
