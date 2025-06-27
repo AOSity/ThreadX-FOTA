@@ -32,6 +32,9 @@ set(TARGET_SOURCES
     Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c
     Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.c
     Core/Src/system_stm32f7xx.c
+    Core/Src/system_stm32f7xx.c
+    Core/Src/eth.c
+    Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_eth.c
     startup_stm32f767xx.s
 )
 list(TRANSFORM TARGET_SOURCES PREPEND "${CMAKE_CURRENT_LIST_DIR}/")
