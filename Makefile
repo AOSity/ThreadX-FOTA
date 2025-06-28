@@ -1,4 +1,5 @@
 TARGET ?= NUCLEO-F767ZI
+TARGET_DIR := target/$(TARGET)
 BUILD_DIR := build
 ELF := $(BUILD_DIR)/bin/$(TARGET).elf
 
@@ -17,6 +18,7 @@ OPENOCD_INTERFACE := interface/stlink.cfg
 all: build
 
 build:
+	cd $(TARGET_DIR) && python ../../scripts/prepare_target.py
 	@mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && cmake -G "Unix Makefiles" \
 		-DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-toolchain.cmake \

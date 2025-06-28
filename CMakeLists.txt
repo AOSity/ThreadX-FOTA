@@ -19,14 +19,15 @@ set(NETXDUO_PATH ${CMAKE_SOURCE_DIR}/third-party/netxduo)
 # Output binary location
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Include board-specific config
-include(${TARGET_PATH}/specific.cmake)
+# Include target-specific config
+include(${TARGET_PATH}/target.cmake)
+include(${TARGET_PATH}/target_config.cmake)
 
 # Set compiler flags based on CPU_FLAGS from board
 set(CMAKE_C_FLAGS "${CPU_FLAGS} -g3 -O0 -Wall -fdata-sections -ffunction-sections")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_ASM_FLAGS "${CPU_FLAGS} -x assembler-with-cpp")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${LINKER_SCRIPT} -Wl,-Map=${PROJECT_NAME}.map,--gc-sections")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${LINKER_SCRIPT} -Wl,-Map=${TARGET_BOARD}.map,--gc-sections")
 
 # Main application
 add_executable(${TARGET_BOARD}.elf
@@ -40,8 +41,7 @@ target_include_directories(${TARGET_BOARD}.elf PRIVATE
 )
 
 target_compile_definitions(${TARGET_BOARD}.elf PRIVATE
-    USE_HAL_DRIVER
-    ${STM32_CHIP_DEF}
+    ${TARGET_DEFS}
 )
 
 # Third-party components
