@@ -7,6 +7,7 @@ ELF := $(BUILD_DIR)/bin/$(TARGET).elf
 # Add more entries as needed
 define TARGET_CFG_MAP
 NUCLEO-F767ZI=target/stm32f7x.cfg
+B-L475E-IOT01A2=target/stm32l4x.cfg
 endef
 $(eval $(TARGET_CFG_MAP))
 
