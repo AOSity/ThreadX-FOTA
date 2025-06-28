@@ -54,10 +54,13 @@ target_link_libraries(${TARGET_BOARD}.elf
     netxduo
 )
 
-# Convert to .bin
+# Convert .bin and .hex
 add_custom_command(TARGET ${TARGET_BOARD}.elf POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O binary
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_BOARD}.elf
         ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_BOARD}.bin
-    COMMENT "Generating .bin file"
+    COMMAND ${CMAKE_OBJCOPY} -O ihex
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_BOARD}.elf
+        ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${TARGET_BOARD}.hex
+    COMMENT "Generating .bin and .hex files"
 )
