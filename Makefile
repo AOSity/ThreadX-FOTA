@@ -1,6 +1,6 @@
 TARGET ?= NUCLEO-F767ZI
 TARGET_DIR := target/$(TARGET)
-BUILD_DIR := build
+BUILD_DIR := build/$(TARGET)
 ELF := $(BUILD_DIR)/bin/$(TARGET).elf
 
 # Dictionary of OpenOCD target config files per board
@@ -21,8 +21,8 @@ build:
 	cd $(TARGET_DIR) && python ../../scripts/prepare_target.py
 	@mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR) && cmake -G "Unix Makefiles" \
-		-DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-toolchain.cmake \
-		-DTARGET_BOARD=$(TARGET) ..
+		-DCMAKE_TOOLCHAIN_FILE=../../cmake/arm-none-eabi-toolchain.cmake \
+		-DTARGET_BOARD=$(TARGET) ../..
 	cd $(BUILD_DIR) && make -j
 
 flash: build
