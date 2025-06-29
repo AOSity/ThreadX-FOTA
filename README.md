@@ -19,20 +19,23 @@ To add your target follow these steps:
     * Select Makefile for "Toolchain / IDE"
     * Check "Generate peripheral initialization as pair of '.c/.h' files per peripheral"
 3. Save and click "Generate Code"
-4. Configure `target/<taget-name>/target_config.cmake`, ref supported targets
-5. Add init_complete_handler into `target/<target-name>/Core/Src/main.c`, ref supported targets
-6. Add your target's OpenOCD config in `Makefile` TARGET_CFG_MAP define
-7. Build project with `make TARGET=<target-name>`
-8. Flash project with `make flash TARGET=<target-name>`
+4. Add init_complete_handler into `target/<target-name>/Core/Src/main.c`, ref supported targets
+5. Create `target/<target-name>/bootloader.ld` with FLASH ORIGIN = 0x08000000, LENGTH = 32K
+6. Configure `target/<target-name>/STM32xxxxxx_FLASH.ld` FLASH ORIGIN = 0x08008000, LENGTH = half the memory minus 32K (for bootloader)
+7. Create and Configure `target/<target-name>/target_config.cmake` ref supported targets
+8. Add your target's OpenOCD config in `Makefile` TARGET_CFG_MAP define
 
 ## Build Rules
 
 ```bash
-Build firmawe:
-$ make [TARGET=]
+Build:
+$ make [TARGET=] [PROJECT=]
 
-Upload fimware to device:
-$ make flash [TARGET=]
+Upload bootloader to device:
+$ make TARGET=<target-name> PROJECT=boot flash
+
+Upload firmware to device:
+$ make TARGET=<target-name> PROJECT=app flash
 
 Clean build directry:
 $ make clean
