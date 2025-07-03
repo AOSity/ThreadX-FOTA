@@ -1,13 +1,13 @@
-# threadx-netxduo-fota
-Learning ThreadX, planing to implement very basic Firmware-Over-The-Air (network, eth) mechanism
+# threadx-firmware-update
+Checking out ThreadX and NetXDuo, planing to implement very basic Firmware-Over-The-Air (network, eth) mechanism
 
 ## Getting Started
 
 Clone the repository:
 
 ```
-git clone https://github.com/AOSity/threadx-netxduo-fota.git
-cd threadx-netxduo-fota
+git clone https://github.com/AOSity/threadx-firmware-update.git
+cd threadx-firmware-update
 git submodule update --init --recursive
 ```
 
